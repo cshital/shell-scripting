@@ -1,0 +1,65 @@
+# Logging :
+
+# Exercise 1:
+
+Write a shell script that displays one random number to the screen and also generates a syslog message with that random number. Use the "user" facility and the "info" facility for your messages.
+
+Hint: Use $RANDOM
+
+
+#!/bin/bash
+
+# Function to log a message with "randomly" tag and PID
+log_message() {
+    local message="$1"
+    local tag="randomly"
+    local pid=$$
+
+    logger -t "$tag" -p user.info "[$pid] $message"
+}
+
+count=1
+
+while [ "$count" -le 3 ]; do
+    random_number=$((1 + RANDOM % 100))
+    log_message "Random Number $count: $random_number"
+    count=$((count + 1))
+done
+
+O/P:
+
+tail -f /var/log/syslog | grep randomly
+May 28 11:48:40 AHMLPT2509 randomly: [9455] Random Number 1: 43
+May 28 11:48:40 AHMLPT2509 randomly: [9455] Random Number 2: 34
+May 28 11:48:40 AHMLPT2509 randomly: [9455] Random Number 3: 42
+
+
+
+
+# Exercise 2:
+
+Modify the previous script so that it uses a logging function. Additionally tag each syslog message with "randomly" and include the process ID. Generate 3 random numbers.
+
+
+#!/bin/bash
+ function logs() {
+	local NUM="Random Number : $@"
+	echo "$NUM"
+	logger -i -t "randomly" -p user.info "$NUM"
+} 
+N=1
+while [ $N -le "3" ]
+do
+	logs $RANDOM
+	((N++))
+done
+
+
+O/P:
+
+./2.sh 
+Random Number : 17895
+Random Number : 148
+Random Number : 30018
+
+

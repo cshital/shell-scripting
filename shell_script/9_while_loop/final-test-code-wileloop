@@ -1,0 +1,92 @@
+# Example:1
+
+#!/bin/bash
+  
+  INDEX=1
+
+while [ $INDEX -lt 6 ]
+do
+   echo "Creating project-${INDEX}"
+   mkdir /usr/local/project-${INDEX}
+   ((INDEX++))
+done   
+
+O/P:
+
+./sample_while.sh 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+# Example:2
+
+#!/bin/bash
+
+while [ "$CORRECT" != "Y" ]
+do 
+   read  -p "Enter your name: " NAME
+   read  -p "Is ${NAME} correct? " CORRECT 
+done   
+
+O/P:
+
+./sample_while2.sh 
+Enter your name: shital
+Is shital correct? Y
+
+# Example: 3
+
+#!/bin/bash
+
+while ping -c 1 app1 >/dev/null
+do
+   echo "app still up..."
+   sleep 5
+done   
+
+echo "app1 down, continuing."
+
+O/P:
+
+./sample_while3.sh 
+ping: app1: Temporary failure in name resolution
+app1 down, continuing.
+
+# Example: 4
+
+#!/bin/bash
+
+LINE_NUM=1
+while read LINE
+do 
+   echo "${LINE_NUM}: ${LINE}"
+   ((LINE_NUM++))
+done < /etc/fstab   
+
+O/P:
+
+./while_line_by_line_file_read.sh 
+1: # /etc/fstab: static file system information.
+2: #
+3: # Use 'blkid' to print the universally unique identifier for a
+4: # device; this may be used with UUID= as a more robust way to name devices
+5: # that works even if disks are added and removed. See fstab(5).
+6: #
+7: # <file system> <mount point>   <type>  <options>       <dump>  <pass>
+8: # / was on /dev/nvme0n1p1 during installation
+9: UUID=099ca8c6-3d47-40c4-b1eb-25671b731cb8 /               ext4    errors=remount-ro 0       1
+10: # /boot/efi was on /dev/nvme0n1p3 during installation
+11: UUID=A6E7-F80D  /boot/efi       vfat    umask=0077      0       1
+12: # /home was on /dev/nvme0n1p4 during installation
+13: UUID=bd866fc5-0c63-4d8d-b6d4-030506e142f6 /home           ext4    defaults        0       2
+14: # swap was on /dev/nvme0n1p2 during installation
+15: UUID=374ed24c-8aa1-460b-89b4-bd3897e8a36d none            swap    sw              0       0
+

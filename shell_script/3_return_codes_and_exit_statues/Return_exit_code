@@ -1,0 +1,25 @@
+# Return_exit_codes :
+
+
+ The $? variable in a Unix-like shell stores the exit status of the last executed command. Here are some common values and their meanings:
+
+ 0: The command executed successfully without any errors.
+
+ 1: A general error occurred. This is often used for miscellaneous errors.
+
+ 2: A misuse of shell builtins (according to Bash documentation).
+
+ 126: The command was found but could not be executed. This can occur if the command file has insufficient permissions.
+
+ 127: The command was not found. This often means the command is not installed or not in the user's PATH.
+
+ 128: Invalid argument to exit. For example, using a non-numeric argument.
+
+ 128+n: A command was terminated by signal n.
+
+ 130: Script terminated by Control-C (SIGINT).
+ 
+ 137: The command was terminated by signal 9 (SIGKILL), which usually indicates it was forcibly killed.
+ 
+ 255: Exit status out of range.
+ 

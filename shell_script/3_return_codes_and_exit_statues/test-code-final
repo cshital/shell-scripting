@@ -1,0 +1,117 @@
+# test-code:
+
+# ping :
+
+#!/bin/bash
+HOST=google.com
+ping -c 1 $HOST
+
+if [ "$?" -eq "0" ]
+then 
+    echo "$HOST we can not ping"
+
+fi
+
+O/P: 
+./ping1.sh  1
+PING google.com (142.250.183.206) 56(84) bytes of data.
+64 bytes from bom07s33-in-f14.1e100.net (142.250.183.206): icmp_seq=1 ttl=119 time=13.6 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 13.593/13.593/13.593/0.000 ms
+google.com we can not ping
+
+# && Operator (logical AND operator):
+
+#!/bin/bash
+
+HOST="google.com"
+ping -c 1 $HOST && echo "$HOST reachable."
+
+O/P:
+
+# || Operator (logical OR operator)
+
+#!/bin/bash
+
+HOST="google.com"
+ping -c 1 $HOST || echo "$HOST unreachable."
+
+O/P:
+
+# ; (semi colon):
+
+# exit_status_code:
+
+#!/bin/bash
+HOST="google.com"
+ping -c 1 $HOST
+
+if [ "$?" -ne "0" ]
+then
+    echo "$HOST unreachable."
+    exit 1
+fi
+exit 0
+
+O/P:
+
+# ping command :
+
+- ping -c 1 google.com // -c for count // exit status check 
+
+- echo $? // rensponce 0 for indicate successfully ping
+
+- ping -c 1 -w 1 amazon.com // -w for specify time in second 
+
+
+- mkdir -p /tmp/jason/bak && cp -v /etc/hosts /tmp/jason/bak // if first command execute thne second command will be execute. if first command is fail then second command not execute.
+
+
+O/P: 
+
+'/etc/hosts' -> '/tmp/jason/bak/hosts'
+
+- cp -v /etc/hosts /tmp/bak/ || cp -v /etc/hosts /tmp/
+
+O/P:
+
+'/etc/hosts' -> '/tmp/bak/'
+cp: cannot create regular file '/tmp/bak/': Not a directory
+'/etc/hosts' -> '/tmp/hosts'
+
+- cp -v /etc/hosts /tmp/ || cp -v /etc/hosts /tmp/bak/
+
+O/P:
+
+'/etc/hosts' -> '/tmp/hosts'
+
+
+- ls /etc/linux-release ; hostname
+
+O/P:
+
+ls: cannot access '/etc/linux-release': No such file or directory
+AHMLPT2509
+
+-ls /etc/hosts ; hostname
+
+O/P:
+
+/etc/hosts
+AHMLPT2509
+
+-ls /etc/hosts ; hostname ; uptime
+
+O/P:
+
+/etc/hosts
+AHMLPT2509
+ 15:14:35 up 22 min,  1 user,  load average: 0.80, 0.78, 0.76
+
+
+
+	
+	
+

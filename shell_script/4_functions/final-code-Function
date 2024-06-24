@@ -1,0 +1,74 @@
+# Function :
+
+# Exercise 1:
+
+Write a shell script that consists of a function that display the number of files in the present
+working directory. Name this function "file_count" and call it in your script. If you use a variable
+in your function, remember to make it a local variable.
+
+Hint: The ​wc​ utility is used to count the number of lines, words, and bytes.
+
+
+#!/bin/bash
+
+echo "Your total file Function is excuting . . ."
+
+file_count ()
+{
+    echo "Your total File of current Directory: " 
+    ls -l |  wc -l
+}
+file_count
+
+O/P:
+
+./1.sh 
+Your total file Function is excuting . . .
+Your total File of current Directory: 
+17
+
+
+
+# Exercise 2:
+
+Modify the script from the previous exercise. Make the "file_count" function accept a directory
+as an argument. Next have the function display the name of the directory followed by a colon.
+Finally, display the number of files to the screen on the next line. Call the function three times.
+First, on the "/etc" directory, next on the "/var" directory and finally on the "/usr/bin" directory.
+
+Example output:
+
+/etc:
+85
+
+
+#!/bin/bash
+
+echo "Your arguments files :" $@
+echo "Total arguments Number is " $#
+
+if [ "$#" -eq 0 ]; then
+    echo "Usage: $0 /dir1 /dir2 /dir3"
+    exit 1
+fi
+
+file_count()
+{
+    direcotry="$1"
+    echo "your directory is: $direcotry: "
+    count=$(find "/$directory" -type f | wc -l)
+    echo "$count"
+}
+
+for direcotry in "$@"; do
+file_count "$directory"
+done
+
+O/P:
+
+./2.sh 
+Your arguments files :
+Total arguments Number is  0
+Usage: ./2.sh /dir1 /dir2 /dir3
+
+

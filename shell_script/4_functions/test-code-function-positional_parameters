@@ -1,0 +1,142 @@
+# positional_parameter_$1:
+
+#!/bin/bash
+
+hello()
+{
+    echo "Hello$1"
+}
+hello abc xyz pqz
+
+O/P: Helloabc
+
+# # positional_parameter_$2:
+
+#!/bin/bash
+
+hello()
+{
+    echo "Hello$2"
+}
+hello abc xyz pqz
+
+O/P: Helloxyz
+
+
+# positional_parameter_$0:
+
+#!/bin/bash
+
+hello()
+{
+    echo "Hello$0"
+}
+hello abc xyz pqz
+
+O/P: Hello./positional_parameter_function2.sh // script it self // not function name // just like shell script.
+
+# positional_parameter_$@:
+
+#!/bin/bash
+
+hello()
+{
+    echo "Hello$@"
+}
+hello abc xyz pqz
+
+O/P:
+Helloabc xyz pqz  // contains all of the parameters.
+
+# positional_parameter_function_with foor_loop:
+
+#!/bin/bash
+
+hello()
+{
+    for NAME in $@
+    do
+       echo "Hello $NAME"
+    done   
+}
+hello Jason Dan Ryan
+
+O/P:
+Hello Jason
+Heloo Dan
+Hello Ryan
+
+
+# function_if_condition: // backup file for
+
+#!/bin/bash
+
+backup_file()
+{
+    if [ -f $1 ]
+    then
+    BACK="/tmp/$(basename ${1}).$(date +%F).$$"
+    echo "Backing up $1 to ${BACK}"
+    cp $1 $BACK
+    fi
+}
+backup_file /etc/hosts
+if [ $? -eq 0]
+then
+    echo "Backup succeeded!"
+    fi
+
+O/P:
+
+
+# function_if_else_condition: 
+
+#!/bin/bash
+
+backup_file()
+{
+    if [ -f $1 ]
+    then
+   local BACK="/tmp/$(basename ${1}).$(date +%F).$$"
+    echo "Backing up $1 to ${BACK}"
+    # The exit status of the function will
+    # be the exit status of the cp command.
+    cp $1 $BACK
+  else
+    # The file does not exist.
+    return 1
+ fi
+}    
+
+O/P:
+
+
+
+# function_if_else_condition: // making decision based exit status:
+
+#!/bin/bash
+
+backup_file /etc/hosts
+
+# make a decision based on the exit status.
+
+if [ $? -eq 0 ]
+then
+    echo "Backup succeded!"
+else 
+    echo "Backup failed"
+
+# About the script and return a non-zero exit status.
+
+exit 1
+fi
+
+O/P:
+
+./function_if_else_condition1.sh 
+./function_if_else_condition1.sh: line 5: backup_file: command not found
+Backup failed
+
+
+
+

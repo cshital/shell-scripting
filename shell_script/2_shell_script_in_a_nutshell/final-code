@@ -1,0 +1,199 @@
+# Exercise 1:
+
+Write a shell script that prints "Shell Scripting is Fun!" to the screen.
+
+Hint 1: Remember to make the shell script executable with the chmod command.
+
+Hint 2: Remember to start your script with a shebang!
+
+Ans: 
+#!/bin/bash
+value="Shell Scripting is Fun!"
+echo "$value"
+
+o/p: Shell Scripting is Fun!
+
+# Exercise 2:
+
+Modify the shell script from exercise 1 to include a variable. The variable will hold the contents of the message "Shell Scripting is Fun!".
+
+Ans: 
+#!/bin/bash
+NAME="shell Scripting is fun"
+echo "$NAME"
+
+O/P:shell Scripting is fun
+
+# Exercise 3:
+
+Store the output of the command "hostname" in a variable. Display "This script is running on _______." where "_______" is the output of the "hostname" command.
+
+Hint: It's a best practice to use the ${VARIABLE} syntax if there is text or characters that directly precede or follow the variable.
+
+Ans: 
+# Assign command out put to variable.
+#!/bin/bash
+
+hostname=$(hostname -s)
+echo "This script is running on ${hostname}."
+
+O/P : This script is running on AHMLPT2509.
+
+# Exercise 4:
+
+Write a shell script to check to see if the file "/etc/shadow" exists. If it does exist, display "Shadow passwords are enabled." Next, check to see if you can write to the file. If you can, display "You have permissions to edit /etc/shadow." If you cannot, display "You do NOT have permissions to edit /etc/shadow."
+
+Ans: 
+#!/bin/bash
+
+if [ -d /etc/shadow ]
+then 
+    echo "Shadow passwords are enabled."
+elif [ -x /etc/shadow ]
+then
+    echo "You have permissions to edit /etc/shadow."
+else 
+    echo "You do NOT have permissions to edit /etc/shadow."
+fi
+
+O/P : You do NOT have permissions to edit /etc/shadow.
+
+# Exercise 5:
+
+Write a shell script that displays "man", "bear", "pig", "dog", "cat", and "sheep" to the screen with each appearing on a separate line. Try to do this in as few lines as possible.
+
+Hint: Loops can be used to perform repetitive tasks.
+
+Ans: 
+#!/bin/bash
+
+for value in man bear pig dog cat sheep
+do 
+    echo Value is : $value
+    echo 
+done
+
+O/P:: 
+Value is : man
+
+Value is : bear
+
+Value is : pig
+
+Value is : dog
+
+Value is : cat
+
+Value is : sheep
+
+# Exercise 6:
+
+Write a shell script that prompts the user for a name of a file or directory and reports if it is a regular file, a directory, or other type of file. Also perform an ls command against the file or directory with the long listing option.
+
+Ans: 
+#!/bin/bash
+echo "Enter file name from same directory :"  
+read filename
+
+echo "Your selected file is: $filename"
+
+if [ -f $filenamae ]
+then
+    echo "is regular"
+
+elif [ -d $filename ]
+then
+    echo "is directory"
+
+else
+    echo "is othertype"
+fi
+
+echo "Full details of this file is:" 
+ls -lah | grep $filename
+
+O/P: 
+Enter file name from same directory :
+home
+Your selected file is: home
+is regular
+Full details of this file is:
+
+# Exercise 7:
+
+Modify the previous script so that it accepts the file or directory name as an argument instead of prompting the user to enter it.
+
+Ans: 
+#!/bin/bash
+
+echo "Total Number of Arguments as File or Directory is :" $#
+echo "Arguments files or Directory are:" $@
+
+if [ -f $filenamae ]
+then
+    echo "is regular"
+
+elif [ -d $filename ]
+then
+    echo "is directory"
+
+else
+    echo "is othertype"
+fi
+
+echo "Full details of this file is:" 
+ls -lah
+
+o/p:
+Total Number of Arguments as File or Directory is : 0
+Arguments files or Directory are:
+is regular
+Full details of this file is:
+total 240K
+drwxrwxr-x 2 einfochips einfochips 4.0K May 22 18:38 .
+drwxrwxr-x 4 einfochips einfochips 4.0K May 21 11:46 ..
+-rwxr-xr-x 1 einfochips einfochips   57 May 21 11:51 1.sh
+-rw-rw-r-- 1 einfochips einfochips  87K May 22 18:17 2024-05-22-2024-05-22-sample_640×426.jpg
+-rwxr-xr-x 1 einfochips einfochips   54 May 23 10:35 2.sh
+-rwxr-xr-x 1 einfochips einfochips  120 May 21 17:44 3.sh
+-rwxr-xr-x 1 einfochips einfochips  232 Oct  5  2023 4.sh
+-rwxr-xr-x 1 einfochips einfochips   98 Oct  5  2023 5.sh
+-rwxr-xr-x 1 einfochips einfochips  311 May 21 16:34 6.sh
+-rwxr-xr-x 1 einfochips einfochips  301 Oct  5  2023 7.sh
+-rwxr-xr-x 1 einfochips einfochips  124 May 21 18:12 Assign_comand_output.sh
+-rw-r--r-- 1 einfochips einfochips  63K Oct  5  2023 ch-2.pdf
+-rwxr-xr-x 1 einfochips einfochips   92 May 22 17:43 for_loop_1.sh
+-rwxr-xr-x 1 einfochips einfochips  175 May 22 18:28 for_loop_2.sh
+-rwxr-xr-x 1 einfochips einfochips   80 May 22 17:43 for_loop.sh
+-rwxr-xr-x 1 einfochips einfochips  108 May 22 12:19 if_condition.sh
+-rwxr-xr-x 1 einfochips einfochips  261 May 22 17:43 if_elif_else_condition.sh
+-rwxr-xr-x 1 einfochips einfochips  177 May 22 17:43 if_else_condition.sh
+-rwxr-xr-x 1 einfochips einfochips  185 May 22 18:48 parameters_1.sh
+-rwxr-xr-x 1 einfochips einfochips   20 May 21 17:06 sleepy.sh
+-rwxr-xr-x 1 einfochips einfochips   65 May 21 17:29 variable2.sh
+-rwxr-xr-x 1 einfochips einfochips   71 May 21 17:35 variable3.sh
+-rwxr-xr-x 1 einfochips einfochips   69 May 21 17:36 variable4.sh
+-rwxr-xr-x 1 einfochips einfochips   63 May 21 17:22 variable.sh
+
+# Exercise 8:
+
+Modify the previous script to accept an unlimited number of files and directories as arguments. Hint: You'll want to use a special variable.
+
+Ans: 
+#!/bin/bash
+for $NAME in $@
+do
+if [ -f $NAME ]
+then
+	echo "$NAME is the file"
+elif [ -d $NAME ]
+then
+	echo "$NAME is directory"
+else
+	echo "$NAME is another file"
+fi
+done
+
+O/P: output is empty
+
+

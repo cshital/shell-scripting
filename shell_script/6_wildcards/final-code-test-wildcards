@@ -1,0 +1,13 @@
+# wildcard test code:
+
+# examole-1:
+
+#!/bin/bash
+
+cd /var/www
+cp *.html /var/www-just-html
+
+
+# example-2:
+
+

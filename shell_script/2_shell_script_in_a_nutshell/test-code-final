@@ -1,0 +1,93 @@
+# postional_parameters:
+
+#!/bin/bash
+
+echo $1
+echo $3
+echo $2
+
+O/P: 
+
+einfochips@AHMLPT2509:~/Desktop/Shital/code-lab/2_Shell_Scripting/shell_script/2_shell_script_in_a_nutshell$ ./positional_parameter.sh  a b c
+a
+c
+b
+
+# positional_parameters:
+
+# sudo ./positional_parameters_1.sh username //run script  //sudo ./positional_parameters_1.sh user
+#!/bin/bash
+
+echo "Executing script: $0"
+echo "Archiving user: $1"
+
+# Lock the account 
+passwd -l $1
+
+# Create an archive of the home directory.
+tar cf /archives/${1}.tar.gz /home/${1} 
+
+-chmod +x archive_user.sh
+-sudo mkdir -p /archives
+-sudo chmod 755 /archives
+-sudo ./archive_user.sh username
+
+# Nested_if statement/condition:
+
+#!/bin/bash
+
+TEMP=$1
+
+if [ $TEMP -gt 5 ]; then // (temp > 5)
+	if [ $TEMP -lt 15 ]; then // (temp < 15)
+		echo "The weather is cold."
+	elif [ $TEMP -lt 25 ]; then // (temp < 25)
+		echo "The weather is nice."
+	else
+		echo "The weather is hot."
+	fi
+else
+	echo "It's freezing outside ..."
+fi
+
+O/P:
+
+./Nested_if.sh 0
+It's freezing outside ...
+
+./Nested_if.sh 1
+It's freezing outside ...
+
+./Nested_if.sh 2
+It's freezing outside ...
+
+ ./Nested_if.sh 8
+The weather is cold.
+
+ ./Nested_if.sh 5
+It's freezing outside ...
+
+./Nested_if.sh 6
+The weather is cold.
+
+./Nested_if.sh 8
+The weather is cold.
+
+./Nested_if.sh 15
+The weather is nice.
+
+ ./Nested_if.sh 14
+The weather is cold.
+
+ ./Nested_if.sh 15
+The weather is nice.
+
+./Nested_if.sh 25
+The weather is hot.
+
+
+
+
+
+
+

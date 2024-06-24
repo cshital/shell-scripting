@@ -1,0 +1,200 @@
+# Exercise 1:
+
+Write a shell script that exit on error and displays commands as they will execute, including all
+expansions and substitutions. Use 3 ​ls​ commands in your script. Make the first one succeed,
+the second one fail, and the third one succeed. If you are using the proper options, the third ​ls
+command will not be executed.
+
+#!/bin/bash
+
+TEST_VAR="test"
+
+
+set -x
+echo $TEST_VAR
+set +x
+
+hostname
+
+O/P:
+
+./1.sh 
++ echo test
+test
++ set +x
+AHMLPT2509
+
+
+
+# Exercise 2:
+
+Modify the previous exercise so that script continues, even if an error occurs. This time all three
+ls ​commands will execute.
+
+#!/bin/bash^M
+# hi.^C
+
+echo "Hello shital"^C
+
+O/P:
+
+
+
+# Exercise 3:
+
+#!/bin/bash -x
+
+TEST_VAR="test"
+echo "$TEST_VAR"
+
+O/P:
+
+./test-dbug.sh 
++ TEST_VAR=test
++ echo test
+test
+
+
+# Exercise 4:
+
+#!/bin/bash
+
+FILE_NAME="/not/here"
+ls $FILE_NAME
+echo $FILE_NAME
+
+O/P:
+
+./4.sh 
+ls: cannot access '/not/here': No such file or directory
+/not/here
+
+# Exercise 5:
+
+#!/bin/bash -ex
+
+FILE_NAME="/not/here"
+ls $FILE_NAME
+echo $FILE_NAME
+
+O/P:
+
+./5.sh 
++ FILE_NAME=/not/here
++ ls /not/here
+ls: cannot access '/not/here': No such file or directory
+
+# Exercise 6:
+
+#!/bin/bash -v
+
+TEST_VAR="test"
+echo "$TEST_VAR"
+
+O/P:
+
+./6.sh 
+#!/bin/bash -v
+
+TEST_VAR="test"
+echo "$TEST_VAR"
+test
+
+# Exerecise 7:
+
+#!/bin/bash -vx
+
+TEST_VAR="test"
++ TEST_VAR=test
+echo "$TEST_VAR"
++ echo test
+test
+
+O/P:
+
+./7.sh 
+#!/bin/bash -vx
+
+TEST_VAR="test"
++ TEST_VAR=test
++ TEST_VAR=test
++ + TEST_VAR=test
+./7.sh: line 4: +: command not found
+echo "$TEST_VAR"
++ echo test
+test
++ echo test
++ + echo test
+./7.sh: line 6: +: command not found
+test
++ test
+
+# Exerecise 8:
+
+#!/bin/bash
+
+DEBUG=true 
+if $DEBUG
+then
+     echo "Debug mode ON."
+  else
+     echo "Debug mode OF."
+fi
+      
+O/P:
+
+./8.sh 
+Debug mode ON.
+
+# Exerecise 9:
+
+#!/bin/bash
+
+DEBUG=true
+$DEBUG && echo "Debug mode ON."
+
+#!/bin/bash
+
+DEBUG=false
+$DEBUG && echo "Debug mode OFF."
+
+O/P:
+
+./9.sh 
+Debug mode ON.
+
+
+# Exerecise 10:
+
+#!/bin/bash
+
+DEBUG="echo"
+$DEBUG ls
+
+#!/bin/bash
+
+#DEBUG="echo"
+$DEBUG ls
+
+O/P:
+./10.sh
+ls
+ls
+
+# Exerecise 11:
+
+#!/bin/bash
+
+debug()
+{
+    echo "Executing:$@"
+    $@
+}
+debug ls
+
+O/P:
+
+./11.sh 
+Executing:ls
+10.sh  11.sh  1.sh  2.sh  3.sh  4.sh  5.sh  6.sh  7.sh  8.sh  9.sh  final-code-dbug  PracticeExercises-Debugging.pdf
+

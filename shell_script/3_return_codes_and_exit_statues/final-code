@@ -1,0 +1,105 @@
+# Exercise 1:
+
+Write a shell script that displays "This script will exit with a 0 exit status." Be sure that the script does indeed exit with a 0 exit status.
+
+#!/bin/bash
+
+ping -c 1 -w 1 google.com
+echo 
+
+echo "Return Exit code is :"
+echo $?
+
+O/P:
+
+./1.sh 
+PING google.com (142.250.183.206) 56(84) bytes of data.
+64 bytes from bom07s33-in-f14.1e100.net (142.250.183.206): icmp_seq=1 ttl=119 time=19.4 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 19.438/19.438/19.438/0.000 ms
+
+Return Exit code is :
+0
+
+# Exercise 2:
+Write a shell script that accepts a file or directory name as an argument. Have the script report
+if it is a regular file, a directory, or other type of file. If it is a regular file, exit with a 0 exit status.
+If it is a directory, exit with a 1 exit status. If it is some other type of file, exit with a 2 exit status.
+
+# ping :
+
+#!/bin/bash
+HOST=google.com
+ping -c 1 $HOST
+
+if [ "$?" -eq "0" ]
+then 
+    echo "we can ping"
+else
+    echo "we can not ping"
+fi
+
+O/P:
+
+./ping.sh 
+PING google.com (142.250.183.206) 56(84) bytes of data.
+64 bytes from bom07s33-in-f14.1e100.net (142.250.183.206): icmp_seq=1 ttl=119 time=14.6 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 14.570/14.570/14.570/0.000 ms
+we can ping
+
+# ping_return_code:
+
+#!/bin/bash
+
+HOST=google.com
+ping -c 1 $HOST
+RETURN_CODE=$?
+
+if [ "$RETURN_CODE" -ne "0"]
+then
+    echo "$HOST we can not ping."
+fi    
+
+O/P:
+
+./ping_return_code.sh 
+PING google.com (142.250.183.206) 56(84) bytes of data.
+64 bytes from bom07s33-in-f14.1e100.net (142.250.183.206): icmp_seq=1 ttl=119 time=14.4 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 14.397/14.397/14.397/0.000 ms
+
+# Exercise 3:
+
+Write a script that executes the command "cat /etc/shadow". If the command returns a 0 exit status report "Command succeeded" and exit with a 0 exit status. If the command returns a non­zero exit status report "Command failed" and exit with a 1 exit status.
+
+
+#!/bin/bash
+
+FILE=/etc/shadow
+cat $FILE
+
+if [ $? == 0 ]
+then 
+    echo "Command succeeded"
+
+elif [ $? == 1 ]
+then
+    echo "Command failed"
+
+else
+    echo "Not found any matching in list"
+fi
+
+O/P:
+
+./3.sh 
+cat: /etc/shadow: Permission denied
+Command failed
+
